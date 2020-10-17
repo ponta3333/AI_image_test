@@ -5,6 +5,7 @@ class TodolistsController < ApplicationController
 
   def create
     list = List.new(list_params)
+    list.score = Language.get_data(list_params[:body])
     list.save
     redirect_to todolist_path(list.id)
     tags = Vision.get_image_data(list.image)
